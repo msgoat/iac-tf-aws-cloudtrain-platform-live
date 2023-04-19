@@ -7,7 +7,7 @@ include "common_providers" {
 }
 
 terraform {
-  source = "get_terragrunt_dir()/../../../../../iac-tf-aws-cloudtrain-modules//modules/network/vpc"
+  source = "get_terragrunt_dir()/../../../../../iac-tf-aws-cloudtrain-modules//modules/security/certificate"
 }
 
 inputs = {

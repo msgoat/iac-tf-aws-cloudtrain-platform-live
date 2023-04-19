@@ -20,37 +20,68 @@ inputs = {
   solution_fqn = "ctrainpltf-dev"
   common_tags = {
     "Organization" = "msg systems AG"
-    "Department" = "Automotive/Manufacturing Technology + Techniques"
+    "BusinessUnit" = "Branche Automotive + Manufacturing"
+    "Department" = "Automotive/Manufacturing CPG"
     "ManagedBy" = "Terraform"
     "PartOf" = "CloudTrain"
     "Tier" = "Platform"
     "Solution" = "ctrainpltf"
     "Stage" = "dev"
   }
-  network_name = "eks"
+  network_name = "train2023"
   network_cidr = "10.17.0.0/16"
-  number_of_zones_to_span = 3
   inbound_traffic_cidrs = [ "0.0.0.0/0" ]
-  nat_strategy = "NAT_GATEWAY_SINGLE"
-  zones_to_span = 3
-  subnets = [
+  nat_strategy = "NAT_GATEWAY_AZ"
+  zones_to_span = 2
+  subnet_templates = [
     {
-      subnet_name = "lb"
+      name = "web"
       accessibility = "public"
+      role = "InternetFacingContainer"
       newbits = 8
-      tags = {}
+      tags = {
+        "kubernetes.io/role/elb" = "1"
+      }
     },
     {
-      subnet_name = "ng"
+      name = "nodes"
       accessibility = "private"
+      role = "NodeGroupContainer"
       newbits = 4
       tags = {}
     },
     {
-      subnet_name = "db"
+      name = "resources"
       accessibility = "private"
+      role = "ResourceContainer"
       newbits = 8
       tags = {}
     }
   ]
+  kubernetes_version = "1.26"
+  kubernetes_cluster_name = "train2023"
+  kubernetes_api_access_cidrs = [ "0.0.0.0/0" ]
+  node_group_strategy = "MULTI_SINGLE_AZ"
+  node_group_templates = [
+    {
+      enabled = true
+      name = "green"
+      kubernetes_version = null
+      min_size = 1
+      max_size = 4
+      desired_size = 1
+      disk_size = 100
+      capacity_type = "SPOT"
+      instance_types = [ "t3a.large", "m6a.large", "m5a.large", "m6i.large" ]
+      labels = {}
+      taints = []
+    }
+  ]
+  certificate_name = "train2023"
+  domain_name = "train2023-dev.k8s.cloudtrain.aws.msgoat.eu"
+  alternative_domain_names = []
+  hosted_zone_name = "k8s.cloudtrain.aws.msgoat.eu"
+  letsencrypt_account_name = "michael.theis@msg.group"
+  cert_manager_enabled = false
+  host_name = "train2023-dev.k8s.cloudtrain.aws.msgoat.eu"
 }

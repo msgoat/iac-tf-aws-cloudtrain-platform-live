@@ -7,14 +7,14 @@ provider "aws" {
 }
 
 module backend {
-  source = "../../../../iac-tf-aws-backend-module"
+  source = "../../../../iac-tf-aws-cloudtrain-modules/modules/terraform/remote-state"
   region_name = "eu-west-1"
   solution_name = "ctrainpltf"
   solution_stage = "dev"
   solution_fqn = "ctrainpltf-dev"
   common_tags = {
     "Organization" = "msg systems AG"
-    "Department" = "Automotive/Manufacturing Technology + Techniques"
+    "Department" = "Automotive/Manufacturing CPG"
     "ManagedBy" = "Terraform"
     "PartOf" = "CloudTrain"
     "Tier" = "Platform"

@@ -1,0 +1,35 @@
+version: 0.2
+
+env:
+  variables:
+    TARGET_REGION: "eu-west-1"
+    TARGET_STAGE: "dev"
+
+phases:
+  install:
+    on-failure: ABORT
+    commands:
+      - echo "Running phase install"
+      - echo "Download and run common installation script"
+      - aws s3 cp s3://s3-eu-west-1-cloudtrain-codebuild-shared/cloudtrain-codebuild-install-terraform.sh ~/
+      - chmod u+x ~/cloudtrain-codebuild-install-terraform.sh
+      - ~/cloudtrain-codebuild-install-terraform.sh
+  pre_build:
+    on-failure: ABORT
+    commands:
+      - echo "Running phase pre_build"
+  build:
+    on-failure: ABORT
+    commands:
+      - echo "Running phase build"
+      - echo "Destroy infrastructure"
+      - cd $CODEBUILD_SRC_DIR/$TARGET_REGION/$TARGET_STAGE
+      - terragrunt run-all destroy --terragrunt-non-interactive
+  post_build:
+    commands:
+      - echo "Running phase post_build"
+
+cache:
+  paths:
+    - "/root/.m2/**/*"
+    - "/root/.sonar/cache/**/*"

@@ -30,7 +30,7 @@ phases:
 #      - terraform apply -input=false tfplan
       - echo "Create infrastructure"
       - cd $CODEBUILD_SRC_DIR/$TARGET_REGION/$TARGET_STAGE
-      - terragrunt run-all apply -input=false terragrunt-non-interactive
+      - terragrunt run-all apply terragrunt-non-interactive
   post_build:
     commands:
       - echo "Running phase post_build"

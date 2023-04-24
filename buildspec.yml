@@ -22,11 +22,12 @@ phases:
     on-failure: ABORT
     commands:
       - echo "Running phase build"
-      - echo "Create terraform backend"
-      - cd $CODEBUILD_SRC_DIR/$TARGET_REGION/$TARGET_STAGE/backend
-      - terraform init
-      - terraform plan -input=false -out=tfplan
-      - terraform apply -input=false tfplan
+# TODO: add check if backend exists
+#      - echo "Create terraform backend"
+#      - cd $CODEBUILD_SRC_DIR/$TARGET_REGION/$TARGET_STAGE/backend
+#      - terraform init
+#      - terraform plan -input=false -out=tfplan
+#      - terraform apply -input=false tfplan
       - echo "Create infrastructure"
       - cd $CODEBUILD_SRC_DIR/$TARGET_REGION/$TARGET_STAGE
       - terragrunt run-all apply -input=false terragrunt-non-interactive

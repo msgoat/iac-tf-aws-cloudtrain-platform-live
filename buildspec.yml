@@ -23,6 +23,8 @@ phases:
     on-failure: ABORT
     commands:
       - echo "Running phase pre_build"
+      - terraform version
+      - terragrunt --version
   build:
     on-failure: ABORT
     commands:

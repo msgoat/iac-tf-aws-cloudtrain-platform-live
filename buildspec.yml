@@ -1,0 +1,37 @@
+version: 0.2
+
+env:
+  secrets-manager:
+    NEXUS_USER: "cloudtrain-codebuild-nexus:user"
+    NEXUS_PASSWORD: "cloudtrain-codebuild-nexus:password"
+    HARBOR_USER: "cloudtrain-codebuild-harbor:user"
+    HARBOR_PASSWORD: "cloudtrain-codebuild-harbor:token"
+    SONARQUBE_TOKEN: "cloudtrain-codebuild-sonarqube:token"
+    DOCKERHUB_USER: "cloudtrain-codebuild-dockerhub:docker-user"
+    DOCKERHUB_PAT: "cloudtrain-codebuild-dockerhub:docker-pat"
+
+phases:
+  install:
+    on-failure: ABORT
+    commands:
+      - echo "Running phase install"
+      - echo "Download and run common installation script"
+      - aws s3 cp s3://s3-eu-west-1-cloudtrain-codebuild-shared/cloudtrain-codebuild-install.sh ~/
+      - chmod u+x ~/cloudtrain-codebuild-install.sh
+      - ~/cloudtrain-codebuild-install.sh
+  pre_build:
+    on-failure: ABORT
+    commands:
+      - echo "Running phase pre_build"
+  build:
+    on-failure: ABORT
+    commands:
+      - echo "Running phase build"
+  post_build:
+    commands:
+      - echo "Running phase post_build"
+
+cache:
+  paths:
+    - "/root/.m2/**/*"
+    - "/root/.sonar/cache/**/*"

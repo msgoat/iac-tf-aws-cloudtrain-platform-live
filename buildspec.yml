@@ -1,14 +1,9 @@
 version: 0.2
 
 env:
-  secrets-manager:
-    NEXUS_USER: "cloudtrain-codebuild-nexus:user"
-    NEXUS_PASSWORD: "cloudtrain-codebuild-nexus:password"
-    HARBOR_USER: "cloudtrain-codebuild-harbor:user"
-    HARBOR_PASSWORD: "cloudtrain-codebuild-harbor:token"
-    SONARQUBE_TOKEN: "cloudtrain-codebuild-sonarqube:token"
-    DOCKERHUB_USER: "cloudtrain-codebuild-dockerhub:docker-user"
-    DOCKERHUB_PAT: "cloudtrain-codebuild-dockerhub:docker-pat"
+  variables:
+    TARGET_REGION: "eu-west-1"
+    TARGET_STAGE: "dev"
 
 phases:
   install:
@@ -27,6 +22,13 @@ phases:
     on-failure: ABORT
     commands:
       - echo "Running phase build"
+      - echo "Create terraform backend"
+      - cd $CODEBUILD_SRC_DIR/$TARGET_REGION/$TARGET_DEV/backend
+      - terraform init
+      - terraform plan -input=false -out=tfplan
+      - terraform apply -input=false tfplan
+      - echo "Create infrastructure"
+      - terragrunt run-all apply -input=false terragrunt-non-interactive
   post_build:
     commands:
       - echo "Running phase post_build"

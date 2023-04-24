@@ -11,7 +11,8 @@ dependency load_balancer {
 }
 
 terraform {
-  source = "get_terragrunt_dir()/../../../../../iac-tf-aws-cloudtrain-modules//modules/dns/record-for-alb"
+  source = "git::https://github.com/msgoat/iac-tf-aws-cloudtrain-modules.git//modules/dns/record-for-alb"
+#  source = "get_terragrunt_dir()/../../../../../iac-tf-aws-cloudtrain-modules//modules/dns/record-for-alb"
 }
 
 inputs = {

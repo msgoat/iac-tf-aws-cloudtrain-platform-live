@@ -11,7 +11,8 @@ dependency network {
 }
 
 terraform {
-  source = "get_terragrunt_dir()/../../../../../../iac-tf-aws-cloudtrain-modules//modules/container/eks/cluster"
+  source = "git::https://github.com/msgoat/iac-tf-aws-cloudtrain-modules.git//modules/container/eks/cluster"
+#  source = "get_terragrunt_dir()/../../../../../../iac-tf-aws-cloudtrain-modules//modules/container/eks/cluster"
 }
 
 inputs = {

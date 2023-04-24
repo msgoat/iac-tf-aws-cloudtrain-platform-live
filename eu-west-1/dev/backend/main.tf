@@ -7,7 +7,8 @@ provider "aws" {
 }
 
 module backend {
-  source = "../../../../iac-tf-aws-cloudtrain-modules/modules/terraform/remote-state"
+  source = "git::https://github.com/msgoat/iac-tf-aws-cloudtrain-modules.git//modules/terraform/remote-state"
+#  source = "../../../../iac-tf-aws-cloudtrain-modules/modules/terraform/remote-state"
   region_name = "eu-west-1"
   solution_name = "ctrainpltf"
   solution_stage = "dev"

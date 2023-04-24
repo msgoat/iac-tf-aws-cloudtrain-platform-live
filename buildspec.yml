@@ -16,15 +16,13 @@ phases:
     commands:
       - echo "Running phase install"
       - echo "Download and run common installation script"
-      - aws s3 cp s3://s3-eu-west-1-cloudtrain-codebuild-shared/cloudtrain-codebuild-install.sh ~/
-      - chmod u+x ~/cloudtrain-codebuild-install.sh
-      - ~/cloudtrain-codebuild-install.sh
+      - aws s3 cp s3://s3-eu-west-1-cloudtrain-codebuild-shared/cloudtrain-codebuild-install-terraform.sh ~/
+      - chmod u+x ~/cloudtrain-codebuild-install-terraform.sh
+      - ~/cloudtrain-codebuild-install-terraform.sh
   pre_build:
     on-failure: ABORT
     commands:
       - echo "Running phase pre_build"
-      - terraform version
-      - terragrunt --version
   build:
     on-failure: ABORT
     commands:

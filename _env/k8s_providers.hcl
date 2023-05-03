@@ -2,6 +2,7 @@ generate "k8s_providers" {
   path      = "k8s_providers.tf"
   if_exists = "overwrite_terragrunt"
   contents = <<EOF
+
 data aws_eks_cluster target {
   name = var.eks_cluster_name
 }

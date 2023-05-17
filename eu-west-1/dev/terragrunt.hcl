@@ -75,6 +75,19 @@ inputs = {
       instance_types = [ "t3a.large", "m6a.large", "m5a.large", "m6i.large" ]
       labels = {}
       taints = []
+    },
+    {
+      enabled = true
+      name = "blue"
+      kubernetes_version = null
+      min_size = 1
+      max_size = 4
+      desired_size = 1
+      disk_size = 100
+      capacity_type = "SPOT"
+      instance_types = [ "t3a.xlarge", "m6a.xlarge", "m5a.xlarge", "m6i.xlarge" ]
+      labels = {}
+      taints = []
     }
   ]
   eks_cluster_admin_role_names = ["cloudtrain-power-user"]

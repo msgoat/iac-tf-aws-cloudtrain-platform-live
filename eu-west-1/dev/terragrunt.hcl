@@ -85,4 +85,5 @@ inputs = {
   letsencrypt_account_name = "michael.theis@msg.group"
   cert_manager_enabled = false
   host_name = "train2023-dev.k8s.cloudtrain.aws.msgoat.eu"
+  loadbalancer_name = "train2023"
 }

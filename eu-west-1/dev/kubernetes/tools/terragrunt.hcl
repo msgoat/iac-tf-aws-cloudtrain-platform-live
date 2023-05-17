@@ -14,14 +14,19 @@ dependency cluster {
   config_path = "../cluster"
 }
 
+dependency addons {
+  config_path = "../addons"
+  skip_outputs = true
+}
+
 dependency ingress {
   config_path = "../ingress"
   skip_outputs = true
 }
 
 terraform {
-#  source = "git::https://github.com/msgoat/iac-tf-aws-cloudtrain-modules.git//modules/container/eks/tools"
-  source = "get_terragrunt_dir()/../../../../../../iac-tf-aws-cloudtrain-modules//modules/container/eks/tools"
+  source = "git::https://github.com/msgoat/iac-tf-aws-cloudtrain-modules.git//modules/container/eks/tools"
+#  source = "get_terragrunt_dir()/../../../../../../iac-tf-aws-cloudtrain-modules//modules/container/eks/tools"
 }
 
 inputs = {

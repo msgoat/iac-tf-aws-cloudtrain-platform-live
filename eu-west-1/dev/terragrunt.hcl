@@ -99,4 +99,14 @@ inputs = {
   cert_manager_enabled = false
   host_name = "train2023-dev.k8s.cloudtrain.aws.msgoat.eu"
   loadbalancer_name = "train2023"
+  # Enables/disables opentracing/jaeger support in ingress controllers and tools.
+  # Needs to be disabled until tracing stack is deployed to cluster
+  jaeger_enabled = false
+  # Jaeger service agent endpoint
+  jaeger_agent_host = "trace-jaeger-agent.tracing"
+  # Jaeger protocol endpoint port (here: jaeger-compact)
+  jaeger_agent_port = 6831
+  # Enables/disables prometheus operator support in all deployments
+  # Needs to be disabled until monitoring stack is deployed to cluster
+  prometheus_operator_enabled = false
 }

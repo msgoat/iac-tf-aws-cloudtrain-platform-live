@@ -64,7 +64,7 @@ inputs = {
   node_group_strategy = "MULTI_SINGLE_AZ"
   node_group_templates = [
     {
-      enabled = true
+      enabled = false
       name = "green"
       kubernetes_version = null
       min_size = 1

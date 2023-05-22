@@ -90,7 +90,7 @@ inputs = {
       taints = []
     }
   ]
-  eks_cluster_admin_role_names = ["cloudtrain-power-user"]
+  eks_cluster_admin_role_names = ["cloudtrain-power-user", "role-eu-west-1-cloudtrain-codebuild"]
   certificate_name = "train2023"
   domain_name = "train2023-dev.k8s.cloudtrain.aws.msgoat.eu"
   alternative_domain_names = []

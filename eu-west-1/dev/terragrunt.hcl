@@ -109,4 +109,12 @@ inputs = {
   # Enables/disables prometheus operator support in all deployments
   # Needs to be disabled until monitoring stack is deployed to cluster
   prometheus_operator_enabled = false
+  # Additional namespaces to create for actual workload
+  kubernetes_namespace_templates = [
+    {
+      name = "cloudtrain"
+      labels = {}
+      network_policy_enforced = false
+    }
+  ]
 }

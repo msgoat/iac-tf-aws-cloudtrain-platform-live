@@ -102,10 +102,10 @@ inputs = {
   # Enables/disables opentracing/jaeger support in ingress controllers and tools.
   # Needs to be disabled until tracing stack is deployed to cluster
   jaeger_enabled = false
-  # Jaeger service agent endpoint
-  jaeger_agent_host = "trace-jaeger-agent.tracing"
-  # Jaeger protocol endpoint port (here: jaeger-compact)
-  jaeger_agent_port = 6831
+  # Jaeger service endpoint (here: OpenTelemetry on Jaeger collector)
+  jaeger_agent_host = "trace-jaeger-collector.tracing"
+  # Jaeger protocol endpoint port (here: OpenTelemetry Protocol via GRPC)
+  jaeger_agent_port = 4317
   # Enables/disables prometheus operator support in all deployments
   # Needs to be disabled until monitoring stack is deployed to cluster
   prometheus_operator_enabled = false

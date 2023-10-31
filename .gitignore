@@ -51,6 +51,7 @@ target/
 examples/**/.terraform.*
 *.tfstate
 *.tfstate.backup
+**/.terraform.lock.hcl
 
 # Terragrunt execution artifacts
 **/.terragrunt-cache/

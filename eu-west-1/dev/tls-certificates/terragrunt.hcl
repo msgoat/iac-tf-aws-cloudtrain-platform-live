@@ -7,8 +7,8 @@ include "common_providers" {
 }
 
 terraform {
-  source = "git::https://github.com/msgoat/iac-tf-aws-cloudtrain-modules.git//modules/security/certificate"
-#  source = "get_terragrunt_dir()/../../../../../iac-tf-aws-cloudtrain-modules//modules/security/certificate"
+#  source = "git::https://github.com/msgoat/iac-tf-aws-cloudtrain-modules.git//modules/security/certificate"
+  source = "get_terragrunt_dir()/../../../../../iac-tf-aws-cloudtrain-modules//modules/security/certificate"
 }
 
 inputs = {

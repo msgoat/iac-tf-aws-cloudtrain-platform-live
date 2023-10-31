@@ -7,8 +7,8 @@ include "common_providers" {
 }
 
 terraform {
-  source = "git::https://github.com/msgoat/iac-tf-aws-cloudtrain-modules.git//modules/network/vpc"
-#  source = "get_terragrunt_dir()/../../../../../iac-tf-aws-cloudtrain-modules//modules/network/vpc"
+#  source = "git::https://github.com/msgoat/iac-tf-aws-cloudtrain-modules.git//modules/network/vpc"
+  source = "get_terragrunt_dir()/../../../../../iac-tf-aws-cloudtrain-modules//modules/network/vpc"
 }
 
 inputs = {

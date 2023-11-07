@@ -58,7 +58,7 @@ inputs = {
       tags = {}
     }
   ]
-  kubernetes_version = "1.26"
+  kubernetes_version = "1.28"
   kubernetes_cluster_name = "train2023"
   kubernetes_api_access_cidrs = [ "0.0.0.0/0" ]
   node_group_strategy = "MULTI_SINGLE_AZ"

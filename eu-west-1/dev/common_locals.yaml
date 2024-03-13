@@ -1,0 +1,10 @@
+# common_locals.yaml
+# ----------------------------------------------------------------------------
+# Defines common local values which can be pulled into all child configuration
+# files like this:
+# locals {
+#   common_locals = yamldecode(file(find_in_parent_folders("common_locals.yaml")))
+# }
+# ----------------------------------------------------------------------------
+#  module_root: "git::https://github.com/msgoat/iac-tf-aws-cloudtrain-modules.git"
+module_root: "../../../../iac-tf-aws-cloudtrain-modules"

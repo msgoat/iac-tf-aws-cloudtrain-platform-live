@@ -29,5 +29,4 @@ terraform {
 inputs = {
   eks_cluster_name = dependency.cluster.outputs.eks_cluster_name
   loadbalancer_id = dependency.loadbalancer.outputs.loadbalancer_id
-  loadbalancer_target_group_id = dependency.loadbalancer.outputs.loadbalancer_target_group_id
 }

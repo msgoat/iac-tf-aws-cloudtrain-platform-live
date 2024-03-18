@@ -18,12 +18,16 @@ dependency network {
   config_path = "../network"
 }
 
+dependency dns {
+  config_path = "../dns"
+}
+
 terraform {
-  source = "${local.common_locals.module_root}//modules/network/application-loadbalancer2"
+  source = "${local.common_locals.module_root}//modules/network/application-loadbalancer"
 }
 
 inputs = {
   loadbalancer_subnet_ids = [ for sn in dependency.network.outputs.subnets : sn.subnet_id if sn.role == "InternetFacingContainer" ]
-  target_group_subnet_ids = [ for sn in dependency.network.outputs.subnets : sn.subnet_id if sn.role == "NodeGroupContainer" ]
   cm_certificate_arn = dependency.certificates.outputs.cm_certificate_arn
+  public_hosted_zone_id = dependency.dns.outputs.hosted_zone_id
 }

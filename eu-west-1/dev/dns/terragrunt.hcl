@@ -10,14 +10,9 @@ include "common_providers" {
   path = "${get_terragrunt_dir()}/../../../_env/common_providers.hcl"
 }
 
-dependency load_balancer {
-  config_path = "../kubernetes-ingress"
-}
-
 terraform {
-  source = "${local.common_locals.module_root}//modules/dns/record-for-alb"
+  source = "${local.common_locals.module_root}//modules/dns/hosted-zone"
 }
 
 inputs = {
-  alb_arn = dependency.load_balancer.outputs.alb_arn
 }

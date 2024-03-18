@@ -121,4 +121,5 @@ inputs = {
       network_policy_enforced = false
     }
   ]
+  host_names = [ "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu" ]
 }

@@ -18,16 +18,15 @@ dependency cluster {
   config_path = "../kubernetes-cluster"
 }
 
-dependency loadbalancer {
-  config_path = "../loadbalancer"
+dependency namespace {
+  config_path = "../workload-namespaces"
 }
 
 terraform {
-  source = "${local.common_locals.module_root}//modules/container/eks/addons"
+  source = "${local.common_locals.module_root}//modules/cloudtrain/databases"
 }
 
 inputs = {
   eks_cluster_name = dependency.cluster.outputs.eks_cluster_name
-  loadbalancer_id = dependency.loadbalancer.outputs.loadbalancer_id
-  loadbalancer_target_group_id = dependency.loadbalancer.outputs.loadbalancer_target_group_id
+  kubernetes_namespace_name = dependency.namespace.outputs.eks_cluster_name
 }

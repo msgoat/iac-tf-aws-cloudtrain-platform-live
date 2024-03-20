@@ -1,3 +1,7 @@
+locals {
+  common_name = "train2024"
+}
+
 remote_state {
   backend = "s3"
   generate = {
@@ -20,15 +24,15 @@ inputs = {
   solution_fqn = "ctrainpltf-dev"
   common_tags = {
     "Organization" = "msg systems AG"
-    "BusinessUnit" = "Branche Automotive + Manufacturing"
-    "Department" = "Automotive/Manufacturing CPG"
+    "BusinessUnit" = "Branche Automotive"
+    "Department" = "PG Cloud"
     "ManagedBy" = "Terraform"
     "PartOf" = "CloudTrain"
     "Tier" = "Platform"
     "Solution" = "ctrainpltf"
     "Stage" = "dev"
   }
-  network_name = "train2023"
+  network_name = local.common_name
   network_cidr = "10.17.0.0/16"
   inbound_traffic_cidrs = [ "0.0.0.0/0" ]
   nat_strategy = "NAT_GATEWAY_AZ"
@@ -58,8 +62,8 @@ inputs = {
       tags = {}
     }
   ]
-  kubernetes_version = "1.28"
-  kubernetes_cluster_name = "train2023"
+  kubernetes_version = "1.29"
+  kubernetes_cluster_name = local.common_name
   kubernetes_api_access_cidrs = [ "0.0.0.0/0" ]
   node_group_strategy = "MULTI_SINGLE_AZ"
   node_group_templates = [
@@ -91,25 +95,25 @@ inputs = {
     }
   ]
   eks_cluster_admin_role_names = ["cloudtrain-power-user", "role-eu-west-1-cloudtrain-codebuild"]
-  certificate_name = "train2023"
-  domain_name = "train2023-dev.k8s.cloudtrain.aws.msgoat.eu"
+  certificate_name = local.common_name
+  domain_name = "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu"
   alternative_domain_names = []
   hosted_zone_name = "k8s.cloudtrain.aws.msgoat.eu"
   letsencrypt_account_name = "michael.theis@msg.group"
-  cert_manager_enabled = false
-  host_name = "train2023-dev.k8s.cloudtrain.aws.msgoat.eu"
-  loadbalancer_name = "train2023"
-  # Enables/disables opentracing/jaeger support in ingress controllers and tools.
-  # Needs to be disabled until tracing stack is deployed to cluster
+  cert_manager_enabled = true
+  host_name = "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu"
+  loadbalancer_name = local.common_name
+  # Enables/disables opentracing/jaeger support in kubernetes-ingress controllers and tools.
+  # Needs to be disabled until tracing stack is deployed to kubernetes-cluster
   jaeger_enabled = false
   # Jaeger service endpoint (here: OpenTelemetry on Jaeger collector)
   jaeger_agent_host = "trace-jaeger-collector.tracing"
   # Jaeger protocol endpoint port (here: OpenTelemetry Protocol via GRPC)
   jaeger_agent_port = 4317
   # Enables/disables prometheus operator support in all deployments
-  # Needs to be disabled until monitoring stack is deployed to cluster
+  # Needs to be disabled until monitoring stack is deployed to kubernetes-cluster
   prometheus_operator_enabled = false
-  # Additional namespaces to create for actual workload
+  # Additional workload-namespaces to create for actual workload
   kubernetes_namespace_templates = [
     {
       name = "cloudtrain"
@@ -117,4 +121,27 @@ inputs = {
       network_policy_enforced = false
     }
   ]
+  host_names = [ "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu" ]
+  # Kubernetes add-ons
+  addon_aws_auth_enabled = true
+  addon_aws_ebs_csi_driver_enabled = true
+  addon_metrics_server_enabled = true
+  addon_cluster_autoscaler_enabled = true
+  addon_cert_manager_enabled = true
+  addon_ingress_aws_enabled = true
+  addon_ingress_nginx_enabled = true
+  addon_eck_operator_enabled = true
+  # Kubernetes tools
+  prometheus_ui_enabled = false
+  prometheus_host_name = "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu"
+  prometheus_path = "/prometheus"
+  grafana_ui_enabled = true
+  grafana_host_name = "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu"
+  grafana_path = "/grafana"
+  kibana_ui_enabled = true
+  kibana_host_name = "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu"
+  kibana_path = "/kibana"
+  jaeger_ui_enabled = true
+  jaeger_host_name = "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu"
+  jaeger_path = "/jaeger"
 }

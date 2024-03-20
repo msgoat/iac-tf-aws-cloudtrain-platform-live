@@ -1,3 +1,7 @@
+locals {
+  common_locals = yamldecode(file(find_in_parent_folders("common_locals.yaml")))
+}
+
 include "root" {
   path = find_in_parent_folders()
 }
@@ -7,8 +11,7 @@ include "common_providers" {
 }
 
 terraform {
-  source = "git::https://github.com/msgoat/iac-tf-aws-cloudtrain-modules.git//modules/network/vpc"
-#  source = "get_terragrunt_dir()/../../../../../iac-tf-aws-cloudtrain-modules//modules/network/vpc"
+  source = "${local.common_locals.module_root}//modules/network/vpc"
 }
 
 inputs = {

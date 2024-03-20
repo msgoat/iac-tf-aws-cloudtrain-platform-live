@@ -122,4 +122,26 @@ inputs = {
     }
   ]
   host_names = [ "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu" ]
+  # Kubernetes add-ons
+  addon_aws_auth_enabled = true
+  addon_aws_ebs_csi_driver_enabled = true
+  addon_metrics_server_enabled = true
+  addon_cluster_autoscaler_enabled = true
+  addon_cert_manager_enabled = true
+  addon_ingress_aws_enabled = true
+  addon_ingress_nginx_enabled = true
+  addon_eck_operator_enabled = true
+  # Kubernetes tools
+  prometheus_ui_enabled = false
+  prometheus_host_name = "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu"
+  prometheus_path = "/prometheus"
+  grafana_ui_enabled = true
+  grafana_host_name = "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu"
+  grafana_path = "/grafana"
+  kibana_ui_enabled = true
+  kibana_host_name = "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu"
+  kibana_path = "/kibana"
+  jaeger_ui_enabled = true
+  jaeger_host_name = "${local.common_name}-dev.k8s.cloudtrain.aws.msgoat.eu"
+  jaeger_path = "/jaeger"
 }

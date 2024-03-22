@@ -79,6 +79,7 @@ inputs = {
       instance_types = [ "m6g.xlarge", "t4g.xlarge", "m7g.xlarge" ]
       labels = {}
       taints = []
+      instance_type = "BOTTLEROCKET_ARM_64"
     }
   ]
   eks_cluster_admin_role_names = ["cloudtrain-power-user", "role-eu-west-1-cloudtrain-codebuild"]

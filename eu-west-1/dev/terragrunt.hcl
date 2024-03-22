@@ -107,9 +107,15 @@ inputs = {
   # Needs to be disabled until tracing stack is deployed to kubernetes-cluster
   jaeger_enabled = false
   # Jaeger service endpoint (here: OpenTelemetry on Jaeger collector)
-  jaeger_agent_host = "trace-jaeger-collector.tracing"
+  jaeger_agent_host = "tracing-jaeger-collector.tracing"
   # Jaeger protocol endpoint port (here: OpenTelemetry Protocol via GRPC)
   jaeger_agent_port = 4317
+  # Controls if OpenTelemetry support should be enabled
+  opentelemetry_enabled = true
+  # Host name of the OpenTelemetry collector endpoint; required if `opentelemetry_enabled` is true
+  opentelemetry_collector_host = "tracing-jaeger-collector.tracing"
+  # Port number of the OpenTelemetry collector endpoint; required if `opentelemetry_enabled` is true
+  opentelemetry_collector_port = 4317
   # Enables/disables prometheus operator support in all deployments
   # Needs to be disabled until monitoring stack is deployed to kubernetes-cluster
   prometheus_operator_enabled = false

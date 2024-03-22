@@ -68,19 +68,6 @@ inputs = {
   node_group_strategy = "MULTI_SINGLE_AZ"
   node_group_templates = [
     {
-      enabled = false
-      name = "green"
-      kubernetes_version = null
-      min_size = 1
-      max_size = 4
-      desired_size = 1
-      disk_size = 100
-      capacity_type = "SPOT"
-      instance_types = [ "t3a.large", "m6a.large", "m5a.large", "m6i.large" ]
-      labels = {}
-      taints = []
-    },
-    {
       enabled = true
       name = "blue"
       kubernetes_version = null
@@ -89,7 +76,7 @@ inputs = {
       desired_size = 1
       disk_size = 100
       capacity_type = "SPOT"
-      instance_types = [ "t3a.xlarge", "m6a.xlarge", "m5a.xlarge", "m6i.xlarge" ]
+      instance_types = [ "m6g.xlarge", "t4g.xlarge", "m7g.xlarge" ]
       labels = {}
       taints = []
     }

@@ -4,7 +4,7 @@ generate "k8s_providers" {
   contents = <<EOF
 
 data aws_eks_cluster target {
-  name = var.eks_cluster_name
+  name = var.eks_cluster_id
 }
 
 data aws_eks_cluster_auth target {

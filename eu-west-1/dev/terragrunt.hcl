@@ -64,6 +64,7 @@ inputs = {
   ]
   kubernetes_version = "1.29"
   kubernetes_cluster_name = local.common_name
+  kubernetes_cluster_architecture = "ARM_64" # Attention: must match image_type of node_group_templates!!!
   kubernetes_api_access_cidrs = [ "0.0.0.0/0" ]
   node_group_strategy = "MULTI_SINGLE_AZ"
   node_group_templates = [
@@ -79,7 +80,7 @@ inputs = {
       instance_types = [ "m6g.xlarge", "t4g.xlarge", "m7g.xlarge" ]
       labels = {}
       taints = []
-      instance_type = "BOTTLEROCKET_ARM_64"
+      image_type = "BOTTLEROCKET_ARM_64"
     }
   ]
   eks_cluster_admin_role_names = ["cloudtrain-power-user", "role-eu-west-1-cloudtrain-codebuild"]

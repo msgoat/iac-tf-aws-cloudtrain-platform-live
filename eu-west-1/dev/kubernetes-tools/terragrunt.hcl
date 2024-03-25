@@ -27,7 +27,7 @@ terraform {
 }
 
 inputs = {
-  eks_cluster_name = dependency.cluster.outputs.eks_cluster_name
+  eks_cluster_id = dependency.cluster.outputs.eks_cluster_id
   kubernetes_ingress_class_name = dependency.addons.outputs.kubernetes_ingress_class_name
   kubernetes_ingress_controller_type = dependency.addons.outputs.kubernetes_ingress_controller_type
 }

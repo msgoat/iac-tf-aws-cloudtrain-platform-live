@@ -10,9 +10,14 @@ include "common_providers" {
   path = "${get_terragrunt_dir()}/../../../_env/common_providers.hcl"
 }
 
+dependency dns {
+  config_path = "../dns"
+}
+
 terraform {
   source = "${local.common_locals.module_root}//modules/security/certificate"
 }
 
 inputs = {
+  hosted_zone_id = dependency.dns.outputs.hosted_zone_id
 }

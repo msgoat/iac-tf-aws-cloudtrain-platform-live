@@ -28,5 +28,6 @@ terraform {
 
 inputs = {
   eks_cluster_name = dependency.cluster.outputs.eks_cluster_name
+  eks_cluster_id = dependency.cluster.outputs.eks_cluster_id
   loadbalancer_id = dependency.loadbalancer.outputs.loadbalancer_id
 }
